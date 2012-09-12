@@ -5,7 +5,7 @@ module Passifier
   # Disk storage for a pass
   class Storage
 
-    attr_reader :signature
+    attr_reader :assets, :scratch_directory
 
     # @param [String] scratch directory The directory to use for file storage
     # @param [Array<Object>] assets The file assets to store
@@ -37,22 +37,16 @@ module Passifier
       Zip::ZipFile.open(zip_path, Zip::ZipFile::CREATE) do |zipfile|
         @assets.each { |asset| zipfile.add(asset.filename, path(asset.filename)) }
       end
-      archive_path
+      zip_path
     end
 
     # Clean up temp files
     def cleanup
       remove_temp_files
-      remove_scratch_directory
+      remove_directory
     end
 
     protected
-
-    # Directory segments of the path without the root
-    # @return [Array<String>] The path broken into string segments
-    def directories
-      @scratch_directory.split("/")
-    end
 
     # Store the file for the given pass asset to disk
     # @param [Object] asset Store the file for the given pass asset
@@ -62,32 +56,35 @@ module Passifier
       end
     end
 
-    # Remove the scratch directory
-    def remove_scratch_directory
-      dir = directories.last
-      FileUtil.remove_dir(dir) rescue nil
+    def remove_directory(directory = nil)
+      directory ||= @scratch_directory
+      Dir.rmdir(directory) if File.exists?(directory) && File.directory?(directory)
     end
 
     # Remove assets (created by Passifier::Storage#store)
     def remove_temp_files
       @assets.map do |asset|
         path = path(asset.filename)
-        File.delete(path) rescue nil
+        File.delete(path) if File.exists?(path)
       end
     end
 
     # Remove a zip archive
     # @param [String] zip_path The path of the archive to delete
     def remove_zip(zip_path)
-      File.delete(zip_path) rescue nil
+      File.delete(zip_path) if File.exists?(zip_path)
     end
 
-    def ensure_directory_exists
+    def ensure_directory_exists(directory = nil)
+      directory ||= @scratch_directory
       last_directory = ""
-      directories.each do |directory|
-        Dir.mkdir("/tmp/#{last_directory}#{directory}") rescue nil
-        last_directory = "#{directory}/"
+      tree = directory.split("/")
+      tree.each do |directory|
+        dir = "#{last_directory}#{directory}"
+        Dir.mkdir(dir) unless File.exists?(dir)
+        last_directory = "#{dir}/"
       end
+      last_directory
     end
 
   end
