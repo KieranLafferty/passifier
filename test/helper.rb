@@ -29,7 +29,7 @@ module Helper
   include Passifier
 
   def serial
-    "THIS IS A SERIAL NUMBER!"
+    "ARE YOU SERIAL"
   end
 
   def spec_hash
@@ -70,6 +70,10 @@ module Helper
 
   def new_spec
     Spec.new(serial, spec_hash)
+  end
+
+  def new_storage
+    Storage.new("test/scratch_directory", new_image_files)
   end
   
   def new_manifest
