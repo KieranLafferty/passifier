@@ -10,10 +10,15 @@ class Test::Unit::TestCase
 end
 
 # So that as few tests as possible will require valid keys and certificates
+# only the Signing test uses the real goods
 class MockSigning
 
   def sha(content)
     "sha rite"
+  end
+
+  def sign(content)
+    "sign of the timez"
   end
 
 end
@@ -25,6 +30,10 @@ module Helper
   
   def new_manifest
     Manifest.new(new_image_files, MockSigning.new)
+  end
+
+  def new_manifest_signature
+    ManifestSignature.new(new_manifest, MockSigning.new)
   end
 
   def new_image_files
