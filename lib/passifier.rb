@@ -2,6 +2,7 @@
 
 # libs
 require "forwardable"
+require "json"
 require "net/http"
 require "zip/zip"
 
