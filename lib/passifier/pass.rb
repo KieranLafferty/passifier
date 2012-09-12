@@ -61,7 +61,9 @@ module Passifier
 
     protected
 
-    # Convert image list to file objects
+    # Convert a list of images to Passifier file objects
+    # @param [Hash] images A Hash of filenames and corresponding file paths or urls
+    # @return [Array<StaticFile, UrlSource>] The resulting StaticFile and/or UrlSource objects
     def to_image_files(images)
       images.map do |filename, image| 
         klass = (image =~ /https?:\/\/[\S]+/) ? UrlSource : StaticFile
