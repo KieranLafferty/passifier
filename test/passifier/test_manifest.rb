@@ -2,8 +2,6 @@ require 'helper'
 
 class TestManifest < Test::Unit::TestCase
 
-  include Passifier
-
   def test_to_hash
     manifest = Helper.new_manifest
 
