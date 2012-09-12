@@ -2,8 +2,6 @@ require 'helper'
 
 class TestUrlSource < Test::Unit::TestCase
 
-  TEST_URL = "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg"
-
   def test_name
     image = Helper.new_url_source
 
@@ -13,7 +11,7 @@ class TestUrlSource < Test::Unit::TestCase
   def test_path
     image = Helper.new_url_source
 
-    assert_equal TEST_URL, image.url
+    assert_equal Helper.image_url, image.url
   end
 
   def test_content

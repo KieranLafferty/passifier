@@ -21,6 +21,7 @@ end
 module Helper
 
   extend self
+  include Passifier
   
   def new_manifest
     Manifest.new(new_image_files, MockSigning.new)
@@ -40,11 +41,15 @@ module Helper
   end
 
   def new_url_source
-    Passifier::UrlSource.new("background.png", TEST_URL)
+    Passifier::UrlSource.new("background.png", image_url)
   end
 
   def new_static_file
     Passifier::StaticFile.new("background.png", "test/assets/background.png")
+  end
+
+  def image_url
+    "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg"
   end
 
 end
