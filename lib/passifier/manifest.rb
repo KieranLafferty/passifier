@@ -18,6 +18,10 @@ module Passifier
       "manifest.json"
     end
 
+    def content
+      to_hash.to_json
+    end
+
     private
 
     # Convert the image files into signed SHA1 digests for use in the manifest file
@@ -25,7 +29,6 @@ module Passifier
     def populate_content(signing)
       @hash = {}
       @image_files.each { |file| @hash[file.name] = signing.sha(file.content) }
-      @content = @hash.to_json
     end
 
   end
