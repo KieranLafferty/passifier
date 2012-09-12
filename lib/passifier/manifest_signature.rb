@@ -5,7 +5,7 @@ module Passifier
   # Represents the signing of the manifest file aka "signature" file in the archive
   class ManifestSignature
 
-    attr_reader :content
+    attr_reader :content, :manifest
 
     # @param [Passifier::Manifest] manifest The Manifest to base the signature on
     def initialize(manifest, signing)
