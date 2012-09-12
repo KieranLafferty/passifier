@@ -1,4 +1,4 @@
-= passifier
+= Passifier
 
 Generate Apple Passbook passes
 
