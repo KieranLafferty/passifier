@@ -8,3 +8,44 @@ require 'passifier'
 
 class Test::Unit::TestCase
 end
+
+# So that as few tests as possible will require valid keys and certificates
+class MockSigning
+
+  def sha(content)
+    "sha rite"
+  end
+
+end
+
+module Helper
+
+  extend self
+  
+  def new_manifest
+    Manifest.new(new_image_files, MockSigning.new)
+  end
+
+  def new_image_files
+    [
+      StaticFile.new("background.png", "test/assets/background.png"),
+      StaticFile.new("background@2x.png", "test/assets/background@2x.png"),
+      StaticFile.new("icon.png", "test/assets/icon.png"),
+      StaticFile.new("icon@2x.png", "test/assets/icon@2x.png"),
+      UrlSource.new("logo.png", "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg"),
+      UrlSource.new("logo@2x.png", "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg"),
+      StaticFile.new("thumbnail.png", "test/assets/thumbnail.png"),
+      StaticFile.new("thumbnail@2x.png", "test/assets/thumbnail@2x.png")
+    ]
+  end
+
+  def new_url_source
+    Passifier::UrlSource.new("background.png", TEST_URL)
+  end
+
+  def new_static_file
+    Passifier::StaticFile.new("background.png", "test/assets/background.png")
+  end
+
+end
+
