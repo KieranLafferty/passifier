@@ -22,6 +22,8 @@ class TestStaticFile < Test::Unit::TestCase
     assert_equal size, file.content.size
   end
 
+  protected
+
   def new_static_file
     Passifier::StaticFile.new("background.png", "test/assets/background.png")
   end

@@ -27,6 +27,8 @@ class TestUrlSource < Test::Unit::TestCase
     assert_equal size, image.content.size
   end
 
+  protected
+
   def new_url_source
     Passifier::UrlSource.new("background.png", TEST_URL)
   end
