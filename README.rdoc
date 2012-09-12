@@ -1,6 +1,6 @@
 = Passifier
 
-![Passifier](http://f.cl.ly/items/3b3f0P3q2f1d0m3A3445/Screen%20Shot%202012-09-12%20at%204.32.12%20PM.png)
+http://f.cl.ly/items/3b3f0P3q2f1d0m3A3445/Screen%20Shot%202012-09-12%20at%204.32.12%20PM.png
 
 Generate Apple Passbook passes in Ruby
 
