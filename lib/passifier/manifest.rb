@@ -4,7 +4,7 @@ module Passifier
 
   class Manifest
 
-    attr_reader :content, :hash
+    attr_reader :hash
     alias_method :to_hash, :hash
 
     # @param [Array<Passifier::StaticFile, Passifier::UrlSource>] images_files The image files to populate the manifest with
