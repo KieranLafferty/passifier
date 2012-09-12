@@ -6,13 +6,9 @@ module Passifier
   # a zip archive.
   class Archive
 
-    extend Forwardable
-
     attr_reader :assets, 
                 :id,
                 :path
-
-    def_delegators :assets, :[], :<<
 
     # @param [String] path The archive path
     # @param [String] id An ID to represent the Archive
@@ -29,17 +25,18 @@ module Passifier
 
     # Write the zip archive to disk
     # @param [Array<Object>] assets An Array of storable assets to put in the archive
+    # @param [Hash] options The options to store an Archive with.
+    # @option opts [String] :scratch_directory The directory to use for temp files while creating the archive. 
+    #                                          (not to be confused with the archive path)
     def store(assets, options = {})
       @assets = assets
       path = options[:scratch_directory] || "/tmp/passkit/#{@id}"
-      storage = Storage.new(path)
-      storage.remove_zip(@path) # remove existing archive if it exists
-      storage << @assets
-      storage.zip(@path, @assets)
+      storage = Storage.new(path, @assets)
+      storage.zip(@path)
+      storage.cleanup
     end
 
   end
-
 
 end
 
