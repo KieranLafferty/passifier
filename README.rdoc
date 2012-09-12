@@ -1,6 +1,6 @@
 = Passifier
 
-Generate Apple Passbook passes
+Generate Apple Passbook passes in Ruby
 
 == Contributing to Passifier
  
