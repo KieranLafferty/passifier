@@ -2,7 +2,6 @@ require 'helper'
 
 class TestSpec < Test::Unit::TestCase
 
-
   def test_serial_number
     spec = Helper.new_spec
 
