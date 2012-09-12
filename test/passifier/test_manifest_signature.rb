@@ -2,8 +2,6 @@ require 'helper'
 
 class TestManifestSignature < Test::Unit::TestCase
 
-  include Passifier
-
   def test_content
     manifest_signature = Helper.new_manifest_signature
 
@@ -13,7 +11,3 @@ class TestManifestSignature < Test::Unit::TestCase
   end
 
 end
-
-
-
-
