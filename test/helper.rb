@@ -27,6 +27,50 @@ module Helper
 
   extend self
   include Passifier
+
+  def serial
+    "THIS IS A SERIAL NUMBER!"
+  end
+
+  def spec_hash
+    {
+      "formatVersion" => 1,
+      "passTypeIdentifier" => "pass.example.example",
+      "teamIdentifier" => "ATEAMID",
+      "relevantDate" => "event time***",          
+      "organizationName" => "Example Inc.",
+      "serialNumber" => serial,
+      "description" => "this is a pass",
+      "generic" => {
+        "headerFields" => [
+          {
+            "key" => "date",
+            "label" => "event time***",
+            "value" => "event date***"
+          }
+        ],
+        "primaryFields" => [
+          {
+            "key" => "title",
+            "label" => "",
+            "value" => "This is the pass title!"
+          }
+        ],
+        "secondaryFields" => [
+          {
+            "key" => "host",
+            "label" => "Host",
+            "value" => "paperlesspost.com",
+            "textAlignment" => "PKTextAlignmentRight"
+          }
+        ]
+      }
+    }
+  end
+
+  def new_spec
+    Spec.new(serial, spec_hash)
+  end
   
   def new_manifest
     Manifest.new(new_image_files, MockSigning.new)
