@@ -19,7 +19,7 @@ class TestManifest < Test::Unit::TestCase
     manifest = new_manifest
 
     assert_not_nil manifest
-    assert_not_nil manifest.to_content
+    assert_not_nil manifest.content
     assert manifest.to_hash.size > 0
   end
 
