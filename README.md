@@ -50,7 +50,7 @@ spec_hash = {
       {
         "key" => "title",
         "label" => "",
-        "value" => "This was generated with Passifier!"
+        "value" => "Passifier!"
       }
     ],
     "secondaryFields" => [
@@ -104,7 +104,9 @@ signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 Passifier::Pass.create_archive("readme.pkpass", serial, spec_hash, images, signing)
 ```
 
-Passifier will have created the file `readme.pkpass` for you.
+The pass that's generated will look something like:
+
+![image](http://i.imgur.com/fooaB.jpg)
 
 Find a similar example with some more explanation [here](http://github.com/paperlesspost/passifier/blob/master/examples/simple.rb)
 

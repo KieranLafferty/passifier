@@ -33,7 +33,7 @@ spec_hash = {
       {
         "key" => "title",
         "label" => "",
-        "value" => "This was generated with Passifier!"
+        "value" => "Passifier!"
       }
     ],
     "secondaryFields" => [
