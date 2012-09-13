@@ -3,18 +3,11 @@ $:.unshift File.join( File.dirname( __FILE__ ), '../lib')
 
 require "passifier"
 
-# This is an example that will generate a simple pass and archive
+# This is an example that will generate a simple pass file
 
-#
-# signing settings
-# replace with your own paths/password
-# 
-key_pem = "../test/assets/signing/key/key.pem"
-pass_phrase = File.read("../test/assets/signing/pass_phrase.txt").strip.lstrip
-cert_pem = "../test/assets/signing/certificate/certificate.pem"
-
-#
-# now for the pass metadata and layout
+# 1. Pass metadata and layout
+# This is used to generate the pass.json file for the archive.
+# See () for more information about pass.json usage
 # 
 serial = "SERIAL_NUM"
 spec_hash = {
@@ -52,7 +45,7 @@ spec_hash = {
 }
 
 #
-# include some images
+# 2. Image assets
 # notice that you can use either paths or urls here
 #
 images = {
@@ -66,13 +59,27 @@ images = {
   "thumbnail@2x.png" => "assets/thumbnail@2x.png"
 }
 
-# create the signing
+#
+# 3. Signing settings
+# Replace with your own paths/password if you plan on running this example
+# 
+key_pem = "../test/assets/signing/key/key.pem"
+pass_phrase = File.read("../test/assets/signing/pass_phrase.txt").strip.lstrip # you can just replace this with a string if you want
+cert_pem = "../test/assets/signing/certificate/certificate.pem"
+
+#
+#
+# Now, generate the pass!
+#
+#
+
+# Create the signing
+#
 signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 
+# Create the pass archive
 output_file = "./simple.pkpass"
+Passifier::Pass.create_archive(output_file, serial, spec_hash, images, signing)
 
-# create the pass and archive
-pass = Passifier::Pass.new(serial, spec_hash, images, signing)
-archive = pass.generate(output_file, :scratch_directory => "scratch_directory")
-
-puts "Finished generating pass (#{output_file})"
+# Finished!
+puts "Finished generating the pass archive: #{output_file}"
