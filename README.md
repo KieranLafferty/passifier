@@ -99,7 +99,7 @@ cert_pem = "../test/assets/signing/certificate/certificate.pem"
 signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 
 # Finally, create the pass archive
-output_file = Passifier::Pass.create_archive("readme.pkpass", serial, spec_hash, images, signing)
+Passifier::Pass.create_archive("readme.pkpass", serial, spec_hash, images, signing)
 ```
 
 Passifier will have created the file `readme.pkpass` for you.
