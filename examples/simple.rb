@@ -1,17 +1,17 @@
 #!/usr/bin/env ruby
+$:.unshift File.join( File.dirname( __FILE__ ), '../lib')
 
 require "passifier"
 
 # This is an example that will generate a simple pass and archive
 
 #
-# create the signing
+# signing settings
 # replace with your own paths/password
 # 
-key_pem = Rails.root.join("config", "passkit", "key", "key.pem")
-pass_phrase = "thisisapassword"
-cert_pem = Rails.root.join("config", "passkit", "certificate", "certificate.pem")
-signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
+key_pem = "../test/assets/signing/key/key.pem"
+pass_phrase = File.read("../test/assets/signing/pass_phrase.txt").strip.lstrip
+cert_pem = "../test/assets/signing/certificate/certificate.pem"
 
 #
 # now for the pass metadata and layout
@@ -20,8 +20,8 @@ serial = "SERIAL_NUM"
 spec_hash = {
   "formatVersion" => 1,
   "passTypeIdentifier" => "pass.example.example",
-  "teamIdentifier" => "ATEAMID",
-  "relevantDate" => event_datetime,          
+  "teamIdentifier" => "AGK5BZEN3E",
+  "relevantDate" => "2012-07-30T14:19Z",          
   "organizationName" => "Example Inc.",
   "serialNumber" => serial,
   "description" => "this is a pass",
@@ -29,8 +29,8 @@ spec_hash = {
     "headerFields" => [
       {
         "key" => "date",
-        "label" => event_time,
-        "value" => event_date
+        "label" => "",
+        "value" => "July 30th"
       }
     ],
     "primaryFields" => [
@@ -66,9 +66,13 @@ images = {
   "thumbnail@2x.png" => "assets/thumbnail@2x.png"
 }
 
+# create the signing
+signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
+
+output_file = "./simple.pkpass"
+
 # create the pass and archive
 pass = Passifier::Pass.new(serial, spec_hash, images, signing)
-archive = pass.generate("pass.pkpass")
+archive = pass.generate(output_file, :scratch_directory => "scratch_directory")
 
-# take a look at what was created
-p archive
+puts "Finished generating pass (#{output_file})"
