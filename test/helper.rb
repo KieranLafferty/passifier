@@ -142,5 +142,18 @@ module Helper
     "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg"
   end
 
+  def signing_pass_phrase
+    File.read(TestSigning::PASS_PHRASE_FILE).strip.lstrip
+  end
+
+  def signing_assets_exist?
+    if File.exist?(TestSigning::CERTIFICATE) && File.exist?(TestSigning::KEY) && File.exist?(TestSigning::PASS_PHRASE_FILE)
+      true
+    else
+      warn "** Warning: Skipping Signing tests because .pem files are missing.  See test/passifier/test_signing.rb for more info. "
+      false
+    end
+  end
+
 end
 

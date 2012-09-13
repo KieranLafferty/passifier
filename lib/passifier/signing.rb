@@ -18,7 +18,7 @@ module Passifier
     # @param [String] content The content to generate a digest from
     # @return [String] The resulting digest
     def sha(content)
-      signed_contents = Signing.sign(content)
+      signed_contents = sign(content)
       Digest::SHA1.hexdigest(signed_contents)
     end
 
