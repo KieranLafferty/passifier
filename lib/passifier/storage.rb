@@ -27,7 +27,6 @@ module Passifier
       ensure_directory_exists
       @assets.each { |asset| write_file(asset) }
     end
-    alias_method :<<, :store
 
     # Create a zip archive given a filename for the archive and a set of pass assets
     # @param [String] zip_path The desired output path
@@ -83,7 +82,7 @@ module Passifier
       tree = directory.split("/")
       tree.each do |directory|
         dir = "#{last_directory}#{directory}"
-        Dir.mkdir(dir) unless File.exists?(dir)
+        Dir.mkdir(dir) unless File.exists?(dir) || dir == ""
         last_directory = "#{dir}/"
       end
       last_directory
