@@ -60,7 +60,6 @@ spec_hash = {
     ]
   }
 }
-
 ```
 
 ### Images
@@ -79,7 +78,6 @@ images = {
   "thumbnail.png" => "assets/thumbnail.png",
   "thumbnail@2x.png" => "assets/thumbnail@2x.png"
 }
-
 ```
 
 ### Signing
@@ -89,7 +87,6 @@ Give Passifier some info about your .pem files.
 (to-do: more info on obtaining certificates and creating pem files)
 
 ```ruby
-
 key_pem = "../test/assets/signing/key/key.pem"
 pass_phrase = "mypassword!"
 cert_pem = "../test/assets/signing/certificate/certificate.pem"
@@ -99,7 +96,6 @@ cert_pem = "../test/assets/signing/certificate/certificate.pem"
 ### Generate!
 
 ```ruby
-
 # Create the signing
 signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 
