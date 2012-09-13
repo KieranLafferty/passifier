@@ -3,6 +3,7 @@
 *.rbc
 *.zip
 *.pem
+*.pkpass
 .DS_Store
 .bundle
 .config
