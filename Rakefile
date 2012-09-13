@@ -13,6 +13,7 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
+  $LOAD_PATH.unshift 'lib'
   require "passifier"
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.version = Passifier::VERSION
