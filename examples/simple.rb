@@ -9,8 +9,8 @@ require "passifier"
 # This is used to generate the pass.json file for the archive.
 # See () for more information about pass.json usage
 # 
-serial = "SERIAL_NUM"
-spec_hash = {
+serial = "SO_SERIAL"
+spec = {
   "formatVersion" => 1,
   "passTypeIdentifier" => "pass.example.example",
   "teamIdentifier" => "ATEAMID",
@@ -81,7 +81,7 @@ signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 
 # Create the pass archive
 output_file = "./simple.pkpass"
-Passifier::Pass.create_archive(output_file, serial, spec_hash, images, signing)
+Passifier::Pass.create_archive(output_file, serial, spec, images, signing)
 
 # Finished!
 puts "Finished generating the pass archive: #{output_file}"

@@ -25,9 +25,9 @@ First, supply a bunch of pass information and styling.  This will become the fil
 
 ```ruby
 
-serial = "SERIAL_NUM"
+serial = "SO_SERIAL"
 
-spec_hash = {
+spec = {
   "formatVersion" => 1,
   "passTypeIdentifier" => "pass.example.example",
   "teamIdentifier" => "ATEAMID",
@@ -90,7 +90,7 @@ Give Passifier some info about your .pem files.
 
 ```ruby
 key_pem = "../test/assets/signing/key/key.pem"
-pass_phrase = "mypassword!"
+pass_phrase = "somethingsomething"
 cert_pem = "../test/assets/signing/certificate/certificate.pem"
 ```
 
@@ -101,7 +101,7 @@ cert_pem = "../test/assets/signing/certificate/certificate.pem"
 signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 
 # Finally, create the pass archive
-Passifier::Pass.create_archive("readme.pkpass", serial, spec_hash, images, signing)
+Passifier::Pass.create_archive("readme.pkpass", serial, spec, images, signing)
 ```
 
 The pass that's generated will look something like:
