@@ -2,7 +2,7 @@
 
 Generate Apple Passbook passes in Ruby
 
-Passifier does most of the hard work and will easier allow you to automate generating pkpass files. You simply supply
+Passifier does most of the hard work and will more easily allow you to automate generating pkpass files. You simply supply
   
 * A Hash of metadata and layout (basically pass.json for those experienced)
 * Image urls and paths
