@@ -2,13 +2,15 @@
 
 module Passifier
 
-  # Content derived from a url
+  # Asset derived from a url
   # Used to pull in the background images
   class UrlSource
 
     attr_reader :content, :name, :url
     alias_method :filename, :name
 
+    # @param [String, Symbol] name The name of the asset
+    # @param [String] url The url to request the asset content from
     def initialize(name, url)
       @name = name
       @url = url
