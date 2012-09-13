@@ -15,7 +15,7 @@ Passifier does most of the hard work and will easier allow you to automate gener
 
 == Usage
 
-Find a example [here](https://github.com/paperlesspost/passifier/blob/master/examples/simple.rb)
+Find a example [here](/paperlesspost/passifier/blob/master/examples/simple.rb)
 
 == Contributing to Passifier
  
