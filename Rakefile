@@ -13,7 +13,9 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
+  require "passifier"
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.version = Passifier::VERSION
   gem.name = "passifier"
   gem.homepage = "http://github.com/paperlesspost/passifier"
   gem.license = "MIT"
