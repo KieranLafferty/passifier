@@ -68,12 +68,24 @@ module Helper
     }
   end
 
+  def zip_path
+    "test/zip.zip"
+  end
+
+  def scratch_directory
+    "test/scratch_directory"
+  end
+
+  def new_archive
+    Archive.new(zip_path, serial, new_image_files) 
+  end
+
   def new_spec
     Spec.new(serial, spec_hash)
   end
 
   def new_storage
-    Storage.new("test/scratch_directory", new_image_files)
+    Storage.new(scratch_directory, new_image_files)
   end
   
   def new_manifest

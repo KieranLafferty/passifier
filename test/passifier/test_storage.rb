@@ -7,13 +7,13 @@ class TestStorage < Test::Unit::TestCase
 
     assert_not_nil storage
     assert_not_nil storage.scratch_directory
-    assert_equal "test/scratch_directory", storage.scratch_directory
+    assert_equal Helper.scratch_directory, storage.scratch_directory
   end
 
   def test_path
     storage = Helper.new_storage
 
-    assert_equal "test/scratch_directory/blah", storage.path("blah")
+    assert_equal "#{Helper.scratch_directory}/blah", storage.path("blah")
   end
 
   def test_ensure_directory_exists
@@ -127,8 +127,7 @@ class TestStorage < Test::Unit::TestCase
 
   def test_zip
     storage = Helper.new_storage
-    storage.send(:ensure_directory_exists, "test/zip")
-    path = "test/zip/test.zip"
+    path = Helper.zip_path
     storage.store
     storage.zip(path)
 
@@ -142,8 +141,7 @@ class TestStorage < Test::Unit::TestCase
 
   def test_remove_zip
     storage = Helper.new_storage
-    storage.send(:ensure_directory_exists, "test/zip")
-    path = "test/zip/test.zip"
+    path = Helper.zip_path
     storage.store
     storage.zip(path)
 
@@ -153,7 +151,6 @@ class TestStorage < Test::Unit::TestCase
 
     assert !File.exists?(path)
 
-    storage.send(:remove_directory, "test/zip")
     storage.cleanup
   end
 

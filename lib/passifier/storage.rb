@@ -35,7 +35,9 @@ module Passifier
     def zip(zip_path)
       remove_zip(zip_path) # ensure that older version is deleted if it exists
       Zip::ZipFile.open(zip_path, Zip::ZipFile::CREATE) do |zipfile|
-        @assets.each { |asset| zipfile.add(asset.filename, path(asset.filename)) }
+        @assets.each do |asset| 
+          zipfile.add(asset.filename, path(asset.filename))
+        end
       end
       zip_path
     end
@@ -44,6 +46,12 @@ module Passifier
     def cleanup
       remove_temp_files
       remove_directory
+    end
+
+    # Remove a zip archive
+    # @param [String] zip_path The path of the archive to delete
+    def remove_zip(zip_path)
+      File.delete(zip_path) if File.exists?(zip_path)
     end
 
     protected
@@ -67,12 +75,6 @@ module Passifier
         path = path(asset.filename)
         File.delete(path) if File.exists?(path)
       end
-    end
-
-    # Remove a zip archive
-    # @param [String] zip_path The path of the archive to delete
-    def remove_zip(zip_path)
-      File.delete(zip_path) if File.exists?(zip_path)
     end
 
     def ensure_directory_exists(directory = nil)

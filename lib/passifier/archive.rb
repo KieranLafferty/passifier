@@ -12,7 +12,8 @@ module Passifier
 
     # @param [String] path The archive path
     # @param [String] id An ID to represent the Archive
-    def initialize(path, id)
+    def initialize(path, id, assets)
+      @assets = assets
       @path = path
       @id = id
     end
@@ -23,18 +24,25 @@ module Passifier
       File.open(@path, 'rb') {|file| file.read } unless @path.nil?
     end
 
+    def destroy
+      unless @storage.nil?
+        @storage.cleanup
+        @storage.remove_zip(@path)
+      end
+    end
+
     # Write the zip archive to disk
-    # @param [Array<Object>] assets An Array of storable assets to put in the archive
     # @param [Hash] options The options to store an Archive with.
     # @option opts [String] :scratch_directory The directory to use for temp files while creating the archive. 
     #                                          (not to be confused with the archive path)
-    def store(assets, options = {})
-      @assets = assets
-      path = options[:scratch_directory] || "/tmp/passkit/#{@id}"
-      storage = Storage.new(path, @assets)
-      storage.zip(@path)
-      storage.cleanup
+    def store(options = {})
+      scratch_dir = options[:scratch_directory] || "/tmp/passkit/#{@id}"
+      @storage = Storage.new(scratch_dir, @assets)
+      @storage.store
+      @storage.zip(@path)
+      @storage.cleanup
     end
+    alias_method :save, :store
 
   end
 
