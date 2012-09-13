@@ -69,19 +69,18 @@ key_pem = "../test/assets/signing/key/key.pem"
 pass_phrase = File.read("../test/assets/signing/pass_phrase.txt").strip.lstrip # you can just replace this with a string if you want
 cert_pem = "../test/assets/signing/certificate/certificate.pem"
 
+# Create a signing object
+signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
+
 #
 #
 # Now, generate the pass!
 #
 #
 
-# Create the signing
-#
-signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
-
 # Create the pass archive
 output_file = "./simple.pkpass"
-Passifier::Pass.create_archive(output_file, serial, spec, images, signing)
+Passifier::Pass.generate(output_file, serial, spec, images, signing)
 
 # Finished!
 puts "Finished generating the pass archive: #{output_file}"

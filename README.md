@@ -93,16 +93,16 @@ key_pem = "path/to/a/key.pem"
 pass_phrase = "somethingsomething"
 cert_pem = "path/to/a/certificate.pem"
 
-# Create the signing
+# Create a Signing object
 signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 ```
 
 ### Generate!
 
-Now it's time to create your pass!
+Now it's time to create your pass.
 
 ```ruby
-Passifier::Pass.create_archive("readme.pkpass", serial, spec, images, signing)
+Passifier::Pass.generate("readme.pkpass", serial, spec, images, signing)
 ```
 
 Passifier will have created the file `readme.pkpass` for you.  When opened in Passbook, that pass looks something like:
