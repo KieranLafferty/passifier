@@ -35,9 +35,9 @@ spec_hash = {
   "organizationName" => "Example Inc.",
   "serialNumber" => serial,
   "description" => "this is a pass",
-  "foregroundColor" => "rgb(246,77,129)",
-  "backgroundColor" => "rgb(107,156,196)",
-  "labelColor" => "rgb(246,77,129)",
+  "labelColor" => "rgb(122, 16, 38)",
+  "backgroundColor" => "rgb(227, 227, 227)",
+  "foregroundColor" => "rgb(110,110,110)",
   "generic" => {
     "headerFields" => [
       {
