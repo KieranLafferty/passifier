@@ -21,6 +21,8 @@ gem 'passifier'
 
 ### Metadata and layout
 
+Here you supply a bunch of pass information and styling.  This becomes the file pass.json within the pass archive.  More inforomation on pass.json and creating a layout can be found at [developers.apple.com](https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Reference/PassKit_Bundle/Chapters/Introduction.html).
+
 ```ruby
 
 serial = "SERIAL_NUM"
