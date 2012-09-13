@@ -43,7 +43,7 @@ spec_hash = {
       {
         "key" => "date",
         "label" => "",
-        "value" => "July 30th"
+        "value" => "October 30th"
       }
     ],
     "primaryFields" => [
@@ -58,7 +58,6 @@ spec_hash = {
         "key" => "host",
         "label" => "Host",
         "value" => "paperlesspost.com",
-        "textAlignment" => "PKTextAlignmentRight"
       }
     ]
   }
