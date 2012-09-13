@@ -19,7 +19,94 @@ gem 'passifier'
 
 ## Usage
 
-Find a example [here](http://github.com/paperlesspost/passifier/blob/master/examples/simple.rb)
+### Metadata and layout
+
+```ruby
+
+serial = "SERIAL_NUM"
+
+spec_hash = {
+  "formatVersion" => 1,
+  "passTypeIdentifier" => "pass.example.example",
+  "teamIdentifier" => "ATEAMID",
+  "relevantDate" => "2012-07-30T14:19Z",          
+  "organizationName" => "Example Inc.",
+  "serialNumber" => serial,
+  "description" => "this is a pass",
+  "generic" => {
+    "headerFields" => [
+      {
+        "key" => "date",
+        "label" => "",
+        "value" => "July 30th"
+      }
+    ],
+    "primaryFields" => [
+      {
+        "key" => "title",
+        "label" => "",
+        "value" => "This is the pass title!"
+      }
+    ],
+    "secondaryFields" => [
+      {
+        "key" => "host",
+        "label" => "Host",
+        "value" => "paperlesspost.com",
+        "textAlignment" => "PKTextAlignmentRight"
+      }
+    ]
+  }
+}
+
+```
+
+### Images
+
+Notice that you can use either paths or urls here
+
+```ruby
+
+images = {
+  "background.png" => "assets/background.png",
+  "background@2x.png" => "assets/background@2x.png",
+  "icon.png" => "assets/icon.png",
+  "icon@2x.png" => "assets/icon@2x.png",
+  "logo.png" => "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg",
+  "logo@2x.png" => "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg",
+  "thumbnail.png" => "assets/thumbnail.png",
+  "thumbnail@2x.png" => "assets/thumbnail@2x.png"
+}
+
+```
+
+### Signing
+
+Give Passifier some info about your .pem files
+
+```ruby
+
+key_pem = "../test/assets/signing/key/key.pem"
+pass_phrase = "mypassword!"
+cert_pem = "../test/assets/signing/certificate/certificate.pem"
+
+```
+
+### Generate!
+
+```ruby
+
+# Create the signing
+signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
+
+# Finally, create the pass archive
+output_file = Passifier::Pass.create_archive("readme.pkpass", serial, spec_hash, images, signing)
+
+```
+
+Passifier will have created the file `readme.pkpass` for you.
+
+Find a similar example with some more explanation [here](http://github.com/paperlesspost/passifier/blob/master/examples/simple.rb)
 
 ## Contributing to Passifier
  
