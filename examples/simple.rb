@@ -25,7 +25,7 @@ spec_hash = {
     "headerFields" => [
       {
         "key" => "date",
-        "label" => "",
+        "label" => "Date",
         "value" => "October 30th"
       }
     ],
@@ -33,7 +33,7 @@ spec_hash = {
       {
         "key" => "title",
         "label" => "",
-        "value" => "This is a pass!"
+        "value" => "This was generated with Passifier!"
       }
     ],
     "secondaryFields" => [
