@@ -66,7 +66,7 @@ spec = {
 
 ### Images
 
-Notice that you can use either paths or urls here
+Specify a Hash of images. Notice that you can use either paths or urls here.
 
 ```ruby
 
@@ -92,15 +92,16 @@ Give Passifier some info about your .pem files.
 key_pem = "path/to/a/key.pem"
 pass_phrase = "somethingsomething"
 cert_pem = "path/to/a/certificate.pem"
+
+# Create the signing
+signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 ```
 
 ### Generate!
 
-```ruby
-# Create the signing
-signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
+Now it's time to create your pass!
 
-# Finally, create the pass archive
+```ruby
 Passifier::Pass.create_archive("readme.pkpass", serial, spec, images, signing)
 ```
 
