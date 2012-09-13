@@ -104,7 +104,7 @@ signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 Passifier::Pass.create_archive("readme.pkpass", serial, spec, images, signing)
 ```
 
-The pass that's generated will look something like:
+Passifier will have created the file `readme.pkpass` for you.  When opened in Passbook, that pass looks something like:
 
 ![image](http://i.imgur.com/fooaB.jpg)
 
