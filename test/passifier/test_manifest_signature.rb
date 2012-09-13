@@ -7,7 +7,7 @@ class TestManifestSignature < Test::Unit::TestCase
 
     assert_not_nil manifest_signature
     assert_not_nil manifest_signature.content
-    assert_equal "sign of the timez", manifest_signature.content
+    assert_equal "****", manifest_signature.content
   end
 
 end

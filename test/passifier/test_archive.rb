@@ -10,7 +10,6 @@ class TestArchive < Test::Unit::TestCase
 
   def test_data
     archive = Helper.new_archive
-    assets = Helper.new_image_files
     archive.save(:scratch_directory => Helper.scratch_directory)
 
     assert File.exists?(Helper.zip_path)
@@ -21,7 +20,6 @@ class TestArchive < Test::Unit::TestCase
 
   def test_save
     archive = Helper.new_archive
-    assets = Helper.new_image_files
     archive.save(:scratch_directory => Helper.scratch_directory)
 
     assert File.exists?(Helper.zip_path)
@@ -32,7 +30,6 @@ class TestArchive < Test::Unit::TestCase
 
   def test_destroy
     archive = Helper.new_archive
-    assets = Helper.new_image_files
     archive.save(:scratch_directory => Helper.scratch_directory)
 
     assert File.exists?(Helper.zip_path)
