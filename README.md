@@ -35,6 +35,9 @@ spec_hash = {
   "organizationName" => "Example Inc.",
   "serialNumber" => serial,
   "description" => "this is a pass",
+  "foregroundColor" => "rgb(246,77,129)",
+  "backgroundColor" => "rgb(107,156,196)",
+  "labelColor" => "rgb(246,77,129)",
   "generic" => {
     "headerFields" => [
       {
@@ -73,8 +76,8 @@ images = {
   "background@2x.png" => "assets/background@2x.png",
   "icon.png" => "assets/icon.png",
   "icon@2x.png" => "assets/icon@2x.png",
-  "logo.png" => "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg",
-  "logo@2x.png" => "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg",
+  "logo.png" => "http://i.imgur.com/WLUf6.png",
+  "logo@2x.png" => "http://i.imgur.com/mOpQo.png",
   "thumbnail.png" => "assets/thumbnail.png",
   "thumbnail@2x.png" => "assets/thumbnail@2x.png"
 }
