@@ -11,7 +11,11 @@ Passifier does most of the hard work and will easier allow you to automate gener
   
 ## Installation
 
-  gem install passifier
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'passifier'
+```
 
 ## Usage
 
