@@ -19,9 +19,9 @@ gem 'passifier'
 
 ## Usage
 
-### Metadata and layout
+### Metadata and Layout
 
-Here you supply a bunch of pass information and styling.  This becomes the file pass.json within the pass archive.  More inforomation on pass.json and creating a layout can be found at [developers.apple.com](https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Reference/PassKit_Bundle/Chapters/Introduction.html).
+First, supply a bunch of pass information and styling.  This will become the file pass.json within the pass archive.  More inforomation on pass.json and creating a layout can be found at [developers.apple.com](https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Reference/PassKit_Bundle/Chapters/Introduction.html).
 
 ```ruby
 
@@ -84,7 +84,9 @@ images = {
 
 ### Signing
 
-Give Passifier some info about your .pem files
+Give Passifier some info about your .pem files.  
+
+(to-do: more info on obtaining certificates and creating pem files)
 
 ```ruby
 
