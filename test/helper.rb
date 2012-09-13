@@ -18,7 +18,7 @@ class MockSigning
   end
 
   def sign(content)
-    "sign of the timez"
+    "****"
   end
 
 end
@@ -76,8 +76,16 @@ module Helper
     "test/scratch_directory"
   end
 
+  def create_archive_through_pass
+    Pass.create_archive(zip_path, serial, spec_hash, new_images, MockSigning.new, :scratch_directory => scratch_directory) 
+  end
+
   def new_archive
     Archive.new(zip_path, serial, new_image_files) 
+  end
+
+  def new_pass
+    Pass.new(serial, spec_hash, new_images, MockSigning.new)
   end
 
   def new_spec
@@ -94,6 +102,19 @@ module Helper
 
   def new_manifest_signature
     ManifestSignature.new(new_manifest, MockSigning.new)
+  end
+
+  def new_images     
+    {
+      "background.png" => "test/assets/background.png",
+      "background@2x.png" => "test/assets/background@2x.png",
+      "icon.png" => "test/assets/icon.png",
+      "icon@2x.png" => "test/assets/icon@2x.png",
+      "logo.png" => "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg",
+      "logo@2x.png" => "http://blog.paperlesspost.com/wp-content/uploads/2012/04/PP_2012-Logo_Registered-2.jpg",
+      "thumbnail.png" => "test/assets/thumbnail.png",
+      "thumbnail@2x.png"=> "test/assets/thumbnail@2x.png"
+    }
   end
 
   def new_image_files
