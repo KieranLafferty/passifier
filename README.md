@@ -109,7 +109,10 @@ Passifier will have created the file `readme.pkpass` for you.  When opened in Pa
 
 ![image](http://i.imgur.com/fooaB.jpg)
 
-Find a similar example with some more explanation [here](http://github.com/paperlesspost/passifier/blob/master/examples/simple.rb)
+## Further Reading
+
+* Find a similar example with some more explanation [here](http://github.com/paperlesspost/passifier/blob/master/examples/simple.rb)
+* Read a blog post about Passifier [here]()
 
 ## Documentation
 
