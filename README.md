@@ -25,7 +25,7 @@ First, supply a bunch of pass information and styling.  This will become the fil
 
 ```ruby
 
-serial = "SO_SERIAL"
+serial_number = "SO_SERIAL"
 
 spec = {
   "formatVersion": 1,
@@ -33,8 +33,8 @@ spec = {
   "teamIdentifier": "METS",
   "relevantDate": "2012-07-30T14:19Z",          
   "organizationName": "Example Inc.",
-  "serialNumber": serial,
-  "description": "this is a pass",
+  "serialNumber": serial_number,
+  "description": "The example pass from README.md",
   "labelColor": "rgb(122, 16, 38)",
   "backgroundColor": "rgb(227, 227, 227)",
   "foregroundColor": "rgb(110,110,110)",
@@ -102,7 +102,7 @@ signing = Passifier::Signing.new(key_pem, pass_phrase, cert_pem)
 Now it's time to create your pass.
 
 ```ruby
-Passifier::Pass.generate("readme.pkpass", serial, spec, assets, signing)
+Passifier::Pass.generate("readme.pkpass", serial_number, spec, assets, signing)
 ```
 
 Passifier will have created the file `readme.pkpass` for you.  When opened in Passbook, that pass looks something like:
