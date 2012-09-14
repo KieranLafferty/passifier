@@ -2,7 +2,7 @@
 
 Generate Apple Passbook passes in Ruby
 
-Passifier does most of the hard work and will more easily allow you to automate generating pkpass files. You simply supply
+Passifier does most of the hard work easily allow you to automate generating pkpass files. You simply supply
   
 * A Hash of metadata and layout (the contents of pass.json for those experienced)
 * Image urls and paths
@@ -28,36 +28,36 @@ First, supply a bunch of pass information and styling.  This will become the fil
 serial = "SO_SERIAL"
 
 spec = {
-  "formatVersion" => 1,
-  "passTypeIdentifier" => "pass.example.example",
-  "teamIdentifier" => "ATEAMID",
-  "relevantDate" => "2012-07-30T14:19Z",          
-  "organizationName" => "Example Inc.",
-  "serialNumber" => serial,
-  "description" => "this is a pass",
-  "labelColor" => "rgb(122, 16, 38)",
-  "backgroundColor" => "rgb(227, 227, 227)",
-  "foregroundColor" => "rgb(110,110,110)",
-  "generic" => {
-    "headerFields" => [
+  "formatVersion": 1,
+  "passTypeIdentifier": "pass.example.example",
+  "teamIdentifier": "METS",
+  "relevantDate": "2012-07-30T14:19Z",          
+  "organizationName": "Example Inc.",
+  "serialNumber": serial,
+  "description": "this is a pass",
+  "labelColor": "rgb(122, 16, 38)",
+  "backgroundColor": "rgb(227, 227, 227)",
+  "foregroundColor": "rgb(110,110,110)",
+  "generic": {
+    "headerFields": [
       {
-        "key" => "date",
-        "label" => "Date",
-        "value" => "October 30th"
+        "key": "date",
+        "label": "Date",
+        "value": "October 30th"
       }
     ],
-    "primaryFields" => [
+    "primaryFields": [
       {
-        "key" => "title",
-        "label" => "",
-        "value" => "Passifier!"
+        "key": "title",
+        "label": "",
+        "value": "Passifier!"
       }
     ],
-    "secondaryFields" => [
+    "secondaryFields": [
       {
-        "key" => "host",
-        "label" => "Host",
-        "value" => "paperlesspost.com",
+        "key": "host",
+        "label": "Host",
+        "value": "paperlesspost.com",
       }
     ]
   }
@@ -71,14 +71,14 @@ Specify a Hash of images. Notice that you can use either paths or urls here.
 ```ruby
 
 images = {
-  "background.png" => "assets/background.png",
-  "background@2x.png" => "assets/background@2x.png",
-  "icon.png" => "assets/icon.png",
-  "icon@2x.png" => "assets/icon@2x.png",
-  "logo.png" => "http://i.imgur.com/WLUf6.png",
-  "logo@2x.png" => "http://i.imgur.com/mOpQo.png",
-  "thumbnail.png" => "assets/thumbnail.png",
-  "thumbnail@2x.png" => "assets/thumbnail@2x.png"
+  "background.png": "assets/background.png",
+  "background@2x.png": "assets/background@2x.png",
+  "icon.png": "assets/icon.png",
+  "icon@2x.png": "assets/icon@2x.png",
+  "logo.png": "http://i.imgur.com/WLUf6.png",
+  "logo@2x.png": "http://i.imgur.com/mOpQo.png",
+  "thumbnail.png": "assets/thumbnail.png",
+  "thumbnail@2x.png": "assets/thumbnail@2x.png"
 }
 ```
 
@@ -110,6 +110,10 @@ Passifier will have created the file `readme.pkpass` for you.  When opened in Pa
 ![image](http://i.imgur.com/fooaB.jpg)
 
 Find a similar example with some more explanation [here](http://github.com/paperlesspost/passifier/blob/master/examples/simple.rb)
+
+## Documentation
+
+* [rubydoc](http://rubydoc.info/github/paperlesspost/passifier)
 
 ## Contributing to Passifier
  
