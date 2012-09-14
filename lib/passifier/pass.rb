@@ -5,7 +5,7 @@ module Passifier
   class Pass
 
     attr_reader :archive, 
-      :image_files, 
+      :asset_files, 
       :manifest, 
       :serial_number, 
       :signature, 
@@ -13,15 +13,15 @@ module Passifier
 
     # @param [String] serial_number An ID for this pass, used as the serial number in pass.json
     # @param [Hash] spec_hash The pass's spec (pass.json)
-    # @param [Hash] images The pass's image assets
+    # @param [Hash] assets The pass's assets (can be local files or remote urls)
     #                      ex. { "background.png" => "https://www.google.com/images/srpr/logo3w.png", 
     #                          "thumbnail.png" => "~/thumb.png" }
     # @param [Signing] signing A valid signing
-    def initialize(serial_number, spec_hash, images, signing, options = {})
+    def initialize(serial_number, spec_hash, assets, signing, options = {})
       @signing = signing
       @spec = Spec.new(serial_number, spec_hash)
-      @image_files = to_image_files(images)
-      @manifest = Manifest.new(@image_files, signing)
+      @asset_files = to_asset_files(assets)
+      @manifest = Manifest.new(@asset_files, signing)
       @signature = ManifestSignature.new(@manifest, signing)
     end
 
@@ -29,7 +29,7 @@ module Passifier
     # @return [Array<Spec, Manifest, ManifestSignature, StaticFile, UrlSource>] File objects that will appear in 
     #                                                                           this pass' archive
     def files_for_archive
-      [@spec, @manifest, @signature, @image_files].flatten.compact
+      [@spec, @manifest, @signature, @asset_files].flatten.compact
     end
 
     # Create the Archive file for this Pass
@@ -54,25 +54,25 @@ module Passifier
     # @param [String] path The desired path of the Archive
     # @param [String] serial_number An ID for this pass, used as the serial number in pass.json
     # @param [Hash] spec_hash The pass's spec (pass.json)
-    # @param [Hash] images The pass's image assets
+    # @param [Hash] assets The pass's assets (can be local files or remote urls)
     #                      ex. { "background.png" => "https://www.google.com/images/srpr/logo3w.png", 
     #                          "thumbnail.png" => "~/thumb.png" }
     # @param [Signing] signing A valid signing
     # @return [Archive] The complete stored archive
-    def self.create_archive(path, serial_number, spec_hash, images, signing, options = {})
-      pass = new(serial_number, spec_hash, images, signing, options)
+    def self.create_archive(path, serial_number, spec_hash, assets, signing, options = {})
+      pass = new(serial_number, spec_hash, assets, signing, options)
       pass.create_archive(path, options)
     end
 
     protected
 
-    # Convert a list of images to Passifier file objects
-    # @param [Hash] images A Hash of filenames and corresponding file paths or urls
+    # Convert a list of assets sources to file objects
+    # @param [Hash] assets A Hash of filenames and corresponding file paths or urls
     # @return [Array<StaticFile, UrlSource>] The resulting StaticFile and/or UrlSource objects
-    def to_image_files(images)
-      images.map do |filename, image| 
-        klass = (image =~ /https?:\/\/[\S]+/) ? UrlSource : StaticFile
-        klass.new(filename, image)
+    def to_asset_files(assets)
+      assets.map do |filename, source| 
+        klass = (source =~ /https?:\/\/[\S]+/) ? UrlSource : StaticFile
+        klass.new(filename, source)
       end.flatten.compact
     end
 

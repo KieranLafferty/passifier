@@ -4,13 +4,13 @@ class TestPass < Test::Unit::TestCase
 
   include Passifier
 
-  def test_to_image_files
+  def test_to_asset_files
     pass = Helper.new_pass
 
     assert_not_nil pass
-    assert_not_empty pass.image_files
-    assert pass.image_files.all? { |file| [StaticFile, UrlSource].include?(file.class) }
-    assert_equal Helper.new_images.size, pass.image_files.size
+    assert_not_empty pass.asset_files
+    assert pass.asset_files.all? { |file| [StaticFile, UrlSource].include?(file.class) }
+    assert_equal Helper.new_images.size, pass.asset_files.size
   end
 
   def test_files_for_archive
